@@ -1,0 +1,41 @@
+{% include "header.html" %}
+<div id="content" class="flex-grow-1">
+  <div class="text-center bg-body-secondary">
+    <div class="pt-2 pb-3 fs-1 fw-bold" style="letter-spacing: 2px;">Payloads</div>
+  </div>
+  <div class="box_border">
+    <form method="post" action="/file/upload" enctype="multipart/form-data" class="m-2 d-flex align-items-center gap-2">
+      <strong>Upload new file: </strong>
+      <div class="flex-grow-1 d-flex align-items-center">
+        <input type="file" name="file" class="flex-grow-1" />
+      </div>
+      <input type="submit" class="btn btn-info btn-sm" value="Upload" />
+    </form>
+  </div>
+  <div id="autoruns" class="implants">
+    <table class="table align-middle mb-0 table-hover table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>PAYLOAD</th>
+          <th style="text-align:center">ACTION</th>
+        </tr>
+      </thead>
+      {% for image in images %}
+      <tr>
+        <td>{{loop.index}}</td>
+        <td>
+          <a href="{{ url_for('serve_payload', filename=image) }}" target="_blank">{{image}}</a>
+        </td>
+        <td style="text-align:center">
+          <a href="{{ url_for('serve_payload', filename=image) }}" target="_blank" download="{{image}}">
+            <button type=" button" class="btn btn-outline-info">
+              <i class="bi bi-download"></i>
+            </button>
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>

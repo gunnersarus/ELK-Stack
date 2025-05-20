@@ -1,0 +1,24 @@
+version: co.elastic.agent/v1
+kind: PackageManifest
+package:
+    version: 9.0.0
+    hash: 9786ac7df1b9a78fb3fdab059148274404dba926
+    versioned-home: data/elastic-agent-9786ac
+    path-mappings:
+        - data/elastic-agent-9786ac: data/elastic-agent-9.0.0-9786ac
+          manifest.yaml: data/elastic-agent-9.0.0-9786ac/manifest.yaml
+    flavors:
+        basic:
+            - agentbeat
+            - endpoint-security
+            - pf-host-agent
+        servers:
+            - agentbeat
+            - endpoint-security
+            - pf-host-agent
+            - cloudbeat
+            - apm-server
+            - fleet-server
+            - pf-elastic-symbolizer
+            - pf-elastic-collector
+

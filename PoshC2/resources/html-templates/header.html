@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="/include/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/include/css/bootstrap-icons.min.css">
+  <script src="/include/js/jquery.min.js"></script>
+</head>
+
+<script defer>
+  // Show correct theme and icon
+  const setTheme = () => {
+    const button = document.getElementById('themeToggleBtn');
+    const icon = document.getElementById('themeIcon');
+
+    // Function to update the icon based on the current theme
+    function updateIcon(isDark) {
+      if (isDark) {
+        icon.className = 'bi bi-sun-fill';
+      } else {
+        icon.className = 'bi bi-moon-fill';
+      }
+    }
+
+    // Function to update the logo based on the current theme
+    function updateLogo(isDark) {
+      const logo = document.querySelector('#posh-logo');
+      if (isDark) {
+        logo.src = '/include/img/logo-for-dark.webp';
+      } else {
+        logo.src = '/include/img/logo-for-light.webp';
+      }
+    }
+
+    // Function to load the theme from localStorage
+    function loadTheme() {
+      const isDark = document.documentElement.getAttribute('data-bs-theme') === 'dark';
+      const theme = localStorage.getItem('theme');
+
+      if (theme === 'dark') {
+        document.documentElement.setAttribute('data-bs-theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-bs-theme', 'light');
+      }
+      updateIcon(isDark);
+      updateLogo(isDark);
+    }
+
+    // Function to toggle the theme and save it to localStorage
+    function toggleTheme() {
+      const isDark = document.documentElement.getAttribute('data-bs-theme') === 'dark';
+      document.documentElement.setAttribute('data-bs-theme', isDark ? 'light' : 'dark');
+      localStorage.setItem('theme', isDark ? 'light' : 'dark');
+      updateIcon(isDark);
+      updateLogo(isDark);
+    }
+
+    // Load the theme on page load
+    loadTheme();
+
+    // Attach the click event listener to the button
+    button.addEventListener('click', toggleTheme);
+  }
+
+  // Add active class to current page
+  const setCurrentActiveClass = () => {
+    const currentPath = window.location.pathname;
+    const links = document.querySelectorAll('.nav-link');
+
+    links.forEach(link => {
+      if (link.getAttribute('href') === currentPath) {
+        link.classList.add('active');
+        return;
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    setTheme();
+    setCurrentActiveClass();
+  });
+
+</script>
+
+<style>
+  :root {
+    --posh-green: #009d3b;
+  }
+
+  a.nav-link {
+    color: var(--posh-green);
+  }
+
+  .active {
+    background: var(--posh-green) !important;
+  }
+</style>
+
+<body class="bg-secondary-subtle vh-100 d-flex">
+  <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary h-100 me-2 fixed-top border-end border-3"
+    style="width: 230px;">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none">
+      <img id="posh-logo" src="/include/img/logo-for-dark.webp" alt="Posh C2" style="max-width: 198px; padding: 2px;">
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto fs-6">
+      <li class="nav-item">
+        <a href="/home" class="nav-link" aria-current="page">
+          <i class="bi bi-house-fill"></i>
+          <span class="mx-2">Home</span>
+        </a>
+      </li>
+      <li>
+        <a href="/c2view" class="nav-link">
+          <i class="bi bi-bug-fill"></i>
+          <span class="mx-2">C2 Overview</span>
+        </a>
+      </li>
+      <li>
+        <a href="/autorunsview" class="nav-link">
+          <i class="bi bi-arrow-right-circle-fill"></i>
+          <span class="mx-2">Autoruns</span>
+        </a>
+      </li>
+      <li>
+        <a href="/payloads" class="nav-link">
+          <i class="bi bi-virus"></i>
+          <span class="mx-2">Payloads/Uploads</span>
+        </a>
+      </li>
+      <li>
+        <a href="/files" class="nav-link">
+          <i class="bi bi-file-earmark-code-fill"></i>
+          <span class="mx-2">Files/Downloads</span>
+        </a>
+      </li>
+      <li>
+        <a href="/newtasksview" class="nav-link">
+          <i class="bi bi-stack"></i>
+          <span class="mx-2">Queued Tasks</span>
+        </a>
+      </li>
+      <li>
+        <a href="/reports" class="nav-link">
+          <i class="bi bi-file-earmark-text-fill"></i>
+          <span class="mx-2">Reports</span>
+        </a>
+      </li>
+    </ul>
+    <hr />
+    <button type="button" class="btn btn-outline-secondary" id="themeToggleBtn">
+      <i class="bi" id="themeIcon"></i>
+      Toggle Theme
+    </button>
+  </div>
+  <div style="width: 230px; min-width: 230px;"></div>

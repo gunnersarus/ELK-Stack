@@ -1,0 +1,34 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pytest = "*"
+pycodestyle = "*"
+autopep8 = "*"
+pylint = "*"
+rope = "*"
+
+[packages]
+pandas = "*"
+prompt-toolkit = "*"
+pycryptodome = "*"
+psycopg2-binary = "*"
+pyOpenSSL = "*"
+PyYAML = "*"
+IPy = "*"
+pefile = "*"
+python-jenkins = "*"
+tzlocal = "*"
+jenkins = "*"
+rich = "*"
+SQLAlchemy = "==1.4.41"
+numpy = "*"
+wheel = "*"
+setuptools = "*"
+typing_extensions = "*"
+flask = "*"
+flask-httpauth = "*"
+flask-restx = "*"
+werkzeug = "*"
